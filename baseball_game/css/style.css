@@ -1,0 +1,110 @@
+/* ローディング */
+
+#loader-bg {
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  background: #000;
+  z-index: 1;
+}
+#loader {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 200px;
+  height: 200px;
+  margin-top: -100px;
+  margin-left: -100px;
+  text-align: center;
+  color: #fff;
+  z-index: 2;
+}
+
+.newlord{
+  margin-top: 50px;
+}
+
+/* body */
+
+body{
+  background-color: #65abf1;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  color: #000;
+}
+
+.head{
+  background-color: #fff;
+  border-bottom: 1px solid #ccc;
+  text-align: center;
+  width: 300px;
+  height: 40px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.team{
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 60px;
+  margin-bottom: 20px;
+}
+
+.table_oll{
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  font-size: x-large;
+  font-weight: bold;
+  margin-right: 20px;
+}
+
+.out_oll{
+  display: flex;
+  text-align: center;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.out_1{
+  color: red;
+  font-size: xx-large;
+  background-color: red;
+}
+
+.count_oll{
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  letter-spacing:20px;
+  font-size: x-large;
+  font-weight: bold;
+  margin-left: 20px;
+}
+
+.score_oll{
+  display: flex;
+  text-align: center;
+  justify-content: space-around;
+}
+
+.scroll_wrapper{
+  background-color: darkgreen;
+  color: #fff;
+  letter-spacing:5px;
+}
+
+tr{
+  font-weight: bold;
+  letter-spacing:5px;
+}

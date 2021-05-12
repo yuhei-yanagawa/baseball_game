@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <meta name="description" content="野球対戦！！">
+  <script src="js/jquery-2.1.3.min.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+  <title>野球ゲーム</title>
+</head>
+<script>
+  // ------------- ローディング ・ JS---------------
+
+  $(function () {
+    let h = $(window).height();
+
+    $('#wrap').css('display', 'none');
+    $('#loader-bg ,#loader').height(h).css('display', 'block');
+  });
+
+  $(window).load(function () {
+    $('#loader-bg').delay(900).fadeOut(800);
+    $('#loader').delay(600).fadeOut(300);
+    $('#wrap').css('display', 'block');
+  });
+
+  $(function () {
+    setTimeout('stopload()', 5000);
+  });
+
+  function stopload() {
+    $('#wrap').css('display', 'block');
+    $('#loader-bg').delay(900).fadeOut(800);
+    $('#loader').delay(600).fadeOut(300);
+  }
+</script>
+<body>
+  <!-------------ローディング ・ HTML--------------- -->
+  <div id="loader-bg">
+    <div id="loader"> <img src="img/loader.jpeg" width="200" height="200" alt="Now Loading..." />
+      <div class="newlord">Now Loading...</div>
+    </div>
+  </div>
+  <!-- -----------メインページ------------------ -->
+  <div id="wrap">
+    <header>
+      <div class="head">
+        <h1>プロ野球ゲーム</h1><br>
+        <h2>チームを選択してください</h2>
+      </div>
+    </header>
+    <div class="team">
+      <div class="team_main_1">
+        <h3>1P</h3> <select name="team_ad">
+          <optgroup label="セリーグ">
+            <option value="giants_1">読売ジャイアンツ</option>
+            <option value="tigers_1">阪神タイガース</option>
+            <option value="dragons_1">中日ドラゴンズ</option>
+            <option value="swallows_1">東京ヤクルトスワローズ</option>
+            <option value="carp_1">広島カープ</option>
+            <option value="baystars_1">横浜ベイスターズ</option>
+          </optgroup>
+          <optgroup label="パリーグ">
+            <option value="softBank_1">福岡ソフトバンクホークス</option>
+            <option value="fighters_1">日本ハムファイターズ</option>
+            <option value="eagles_1">東北楽天イーグルス</option>
+            <option value="orix_1">オリックスバッファローズ</option>
+            <option value="marines_1">千葉ロッテマリーンズ</option>
+            <option value="lions_1">西武ライオンズ</option>
+          </optgroup>
+        </select>
+      </div>
+      <h1>VS</h1>
+      <div class="team_main_2">
+        <h3>2P</h3> <select name="team_ad">
+          <optgroup label="セリーグ">
+            <option value="giants_2">読売ジャイアンツ</option>
+            <option value="tigers_2">阪神タイガース</option>
+            <option value="dragons_2">中日ドラゴンズ</option>
+            <option value="swallows_2">東京ヤクルトスワローズ</option>
+            <option value="carp_2">広島カープ</option>
+            <option value="baystars_2">横浜ベイスターズ</option>
+          </optgroup>
+          <optgroup label="パリーグ">
+            <option value="softBank_2">福岡ソフトバンクホークス</option>
+            <option value="fighters_2">日本ハムファイターズ</option>
+            <option value="eagles_2">東北楽天イーグルス</option>
+            <option value="orix_2">オリックスバッファローズ</option>
+            <option value="marines_2">千葉ロッテマリーンズ</option>
+            <option value="lions_2">西武ライオンズ</option>
+          </optgroup>
+        </select>
+      </div>
+    </div>
+    <!-- -------------------------------------- -->
+    <h3 id="hit">結果</h3>
+    <!-- -------------------------------------- -->
+    <div class="out_oll">
+      <div id="out_1">out count</div>
+      <div id="out_2">out count</div>
+    </div>
+    <!-- <div class="count_oll">
+      <div id="count_1">0</div>
+      <h3>対</h3>
+      <div id="count_2">0</div>
+    </div> -->
+    <!-- -------------------------------------- -->
+    <div class="score_oll"> <button id="start_btn_1">1P攻撃</button>
+      <div id="scroll_wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th><span class="flag_t">チーム名</span></th>
+              <th>1</th>
+              <th>2</th>
+              <th>3</th>
+              <th>4</th>
+              <th>5</th>
+              <th>6</th>
+              <th>7</th>
+              <th>8</th>
+              <th>9</th>
+              <td class="total_score">計</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr id="top">
+              <th><span class="flag_h">ベイスターズ</span></th>
+              <td id="total-1-1">0</td>
+              <td id="total-1-2">0</td>
+              <td id="total-1-3">0</td>
+              <td id="total-1-4">0</td>
+              <td id="total-1-5">0</td>
+              <td id="total-1-6">0</td>
+              <td id="total-1-7">0</td>
+              <td id="total-1-8">0</td>
+              <td id="total-1-9">0</td>
+              <td id="total-1">0</td>
+            </tr>
+            <tr id="bottom">
+              <th><span class="flag_c">ドラゴンズ</span></th>
+              <td id="total-2-1">0</td>
+              <td id="total-2-2">0</td>
+              <td id="total-2-3">0</td>
+              <td id="total-2-4">0</td>
+              <td id="total-2-5">0</td>
+              <td id="total-2-6">0</td>
+              <td id="total-2-7">0</td>
+              <td id="total-2-8">0</td>
+              <td id="total-2-9">0</td>
+              <td id="total-2">0</td>
+            </tr>
+          </tbody>
+        </table>
+      </div> <button id="start_btn_2">2P攻撃</button>
+    </div>
+    <!-- ------------------------------------------- -->
+    <div class="table_oll">
+      <table>
+        <div class="table_1">
+          <tr>
+            <th>打順</th>
+            <th>名前</th>
+            <th>ポジション</th>
+          </tr>
+          <tr>
+            <td>１番</td>
+            <td>
+              <div id="name_1">神里 和毅</div>
+            </td>
+            <td>
+              <div id="position_1">センター</div>
+            </td>
+          </tr>
+          <tr>
+            <td>２番</td>
+            <td>
+              <div id="name_2">大和</div>
+            </td>
+            <td>ショート</td>
+          </tr>
+          <tr>
+            <td>３番</td>
+            <td>
+              <div id="name_3">オースティン</div>
+            </td>
+            <td>ライト</td>
+          </tr>
+          <tr>
+            <td>４番</td>
+            <td>
+              <div id="name_4">佐野 恵太</div>
+            </td>
+            <td>レフト</td>
+          </tr>
+          <tr>
+            <td>５番</td>
+            <td>
+              <div id="name_5">ソト</div>
+            </td>
+            <td>ファースト</td>
+          </tr>
+          <tr>
+            <td>６番</td>
+            <td>
+              <div id="name_6">宮崎 敏郎</div>
+            </td>
+            <td>サード</td>
+          </tr>
+          <tr>
+            <td>７番</td>
+            <td>
+              <div id="name_7">石川 雄洋</div>
+            </td>
+            <td>セカンド</td>
+          </tr>
+          <tr>
+            <td>８番</td>
+            <td>
+              <div id="name_8">戸柱 恭孝</div>
+            </td>
+            <td>キャッチャー</td>
+          </tr>
+          <tr>
+            <td>９番</td>
+            <td>
+              <div id="name_9">三浦 大輔</div>
+            </td>
+            <td>ピッチャー</td>
+          </tr>
+        </div>
+      </table>
+      <!-- ---------------------------------- -->
+      <!-- スタジアム -->
+
+      <img class="stg" src="img/stg.png" alt="">
+
+      <!-- ---------------------------------- -->
+  <table>
+    <div class="table_2">
+      <tr>
+        <th>打順</th>
+        <th>名前</th>
+        <th>ポジション</th>
+      </tr>
+      <tr>
+        <td>１番</td>
+        <td>
+          <div id="name_1">大島 洋平</div>
+        </td>
+        <td>センター</td>
+      </tr>
+      <tr>
+        <td>２番</td>
+        <td>
+          <div id="name_2">京田 陽太</div>
+        </td>
+        <td>ショート</td>
+      </tr>
+      <tr>
+        <td>３番</td>
+        <td>
+          <div id="name_3">福田 永将</div>
+        </td>
+        <td>レフト</td>
+      </tr>
+      <tr>
+        <td>４番</td>
+        <td>
+          <div id="name_4">D.ビシエド</div>
+        </td>
+        <td>ファースト</td>
+      </tr>
+      <tr>
+        <td>５番</td>
+        <td>
+          <div id="name_5">高橋 周平</div>
+        </td>
+        <td>サード</td>
+      </tr>
+      <tr>
+        <td>６番</td>
+        <td>
+          <div id="name_6">阿部 寿樹</div>
+        </td>
+        <td>セカンド</td>
+      </tr>
+      <tr>
+        <td>７番</td>
+        <td>
+          <div id="name_7">福留 孝介</div>
+        </td>
+        <td>ライト</td>
+      </tr>
+      <tr>
+        <td>８番</td>
+        <td>
+          <div id="name_8">木下 拓哉</div>
+        </td>
+        <td>キャッチャー</td>
+      </tr>
+      <tr>
+        <td>９番</td>
+        <td>
+          <div id="name_9">大野 雄大</div>
+        </td>
+        <td>ピッチャー</td>
+      </tr>
+    </div>
+  </table>
+</div>
+<footer> </footer>
+</main>
+<script>
+
+
+
+const score = {
+  'player1':{
+    '1':0,
+    '2':0,
+    '3':0,
+    '4':0,
+    '5':0,
+    '6':0,
+    '7':0,
+    '8':0,
+    '9':0,
+    'total':0
+  },
+
+  'player2':{
+    '1':0,
+    '2':0,
+    '3':0,
+    '4':0,
+    '5':0,
+    '6':0,
+    '7':0,
+    '8':0,
+    '9':0,
+    'total':0
+  }
+}
+// 点数
+let i = 0;
+
+let runner = [false,false,false];
+
+let out_count = 0;
+
+let turn = '1';
+
+$("#start_btn_1").on('click',function () {
+  throwBall();
+  viewHTML();
+});
+
+$("#start_btn_2").on('click',function () {
+  throwBall();
+  viewHTML();
+});
+
+function throwBall() {
+  const baseball = Math.cell(Math.random ()* 40);
+
+  if (baseball <= 31){
+    $("#hit").html('アウト');
+    out_count++;
+    if (out_count >=3){
+      change_Turn();
+    }
+  } else if (baseball <= 36){
+    $("#hit").html('ヒット');
+    hit(i, turn);
+
+  } else if (baseball <= 38){
+    $("#hit").html('ツーベース');
+    hit(i, turn, 2);
+  } else if (baseball <= 39) {
+      $('#hit').html('スリーベース');
+      hit(i, turn, 3);
+
+  } else {
+    $("#hit").html('ホームラン');
+    for (v of runner) {
+      if (v){
+        score['player' + turn][i]++
+      }
+    }
+    score['player' + turn][i]++
+    runner = [false, false, false]
+    calcTotal()
+  }
+
+  if(chackGameSet()){
+    $("#start_btn_1").attr('disabled', true)
+    $("#start_btn_2").attr('disabled', true)
+    $("#hit").append('<br>ゲームセット！')
+  }
+}
+
+// 個人的にかなり難しい概念でした。
+
+function viewHTML() {
+  $("#total-" + turn).html(score['player' + turn]['total'])
+  $('#total' + turn + '-' + i).html(score['player' + turn][i])
+
+  let out_count = ''
+  for (let k = 0; k < out_count; k++) {
+    out_count += '●'
+  }
+  $("#out_" + turn).html(out_html)
+}
+
+function hit(i, turn, number = 1 ){
+
+  for (let j = 0; j < number; j++) {
+
+    if (j == 0){
+      runner.unshift(true);
+    } else {
+      runner.unshift(false);
+    }
+
+  if (runner[3]){
+    score ['player' + turn][i]++
+    calcTotal();
+  }
+  runner.pop();
+  }
+}
+
+function changeTurn() {
+  if (turn == '1'){
+    turn = '2'
+    $("#start_btn_1").attr('disabled', true)
+    $("#start_btn_2").attr('disabled', )
+
+    } else {
+      turn = '1'
+      i++
+      $("#start_btn_1").attr('disabled', true)
+      $("#start_btn_2").attr('disabled', false)
+    }
+    $("#out_1, #out_2").html('');
+    runner = [false, false, false]
+    out_count = 0
+  }
+
+  function calcTotal() {
+    let total = 0
+    for (let m = 1; m <= 9; m++) {
+      total += score['player' + turn][m]
+    }
+    score['player' + turn]['total'] = total
+  }
+</script>
